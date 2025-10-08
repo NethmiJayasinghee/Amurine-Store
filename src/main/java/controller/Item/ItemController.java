@@ -1,0 +1,73 @@
+package controller.Item;
+
+import db.DBConnection;
+import javafx.collections.FXCollections;
+import model.Customer;
+import model.Item;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ItemController implements ItemService {
+
+    @Override
+    public boolean addItem(Item item) {
+        try {
+            Connection connection=DBConnection.getInstance().getConnection();
+            PreparedStatement psTm=connection.prepareStatement("INSERT INTO  Item VALUES(?,?,?,?) ");
+
+            psTm.setObject(1,item.getCode());
+            psTm.setObject(2,item.getDes());
+            psTm.setObject(3,item.getUnitPrice());
+            psTm.setDouble(4,item.getQtyOnHand());
+            return psTm.executeUpdate()>0;
+
+
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public boolean updateItem(Item item) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteItem(String item) {
+        return false;
+    }
+
+    @Override
+    public Customer getItem(String code) {
+        return null;
+    }
+
+    @Override
+    public List<Item> getDetails() {
+        try {
+            Connection connection=DBConnection.getInstance().getConnection();
+            Statement statement=connection.createStatement();
+            ResultSet rs=statement.executeQuery("SELECT * FROM Item");
+
+            List<Item> itemList=new ArrayList<>();
+
+            while (rs.next()){
+                itemList.add(new Item(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getDouble(3),
+                        rs.getInt(4)
+
+                ));
+            }
+            return itemList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+}
