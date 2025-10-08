@@ -9,8 +9,8 @@ public interface ItemService {
     boolean addItem(Item item);
     boolean updateItem(Item item);
     boolean deleteItem(String item);
-    Customer getItem(String code);
-     List<Item> getDetails();
+    Item getItem(String code);
+    List<Item> getDetails();
 
 
 }

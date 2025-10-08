@@ -16,23 +16,29 @@ public class DashBoard {
     public AnchorPane root;
     @FXML
     void btnCustomerOnAction(ActionEvent event) throws IOException {
-        URL resourse = this.getClass().getResource("/View/CustomerForm.fxml");
-        assert resourse != null;
-        Parent load;
-        load = FXMLLoader.load(resourse);
+        URL resource= this.getClass().getResource("view/CustomerForm.fxml");
+        assert resource !=null;
+        Parent load = FXMLLoader.load(resource);
         this.root.getChildren().clear();
         this.root.getChildren().add(load);
-
     }
 
     @FXML
-    void btnItemOnAction(ActionEvent event) {
-
+    void btnItemOnAction(ActionEvent event) throws IOException {
+        URL resource= this.getClass().getResource("view/Item.fxml");
+        assert resource !=null;
+        Parent load = FXMLLoader.load(resource);
+        this.root.getChildren().clear();
+        this.root.getChildren().add(load);
     }
 
     @FXML
-    void btnOrderDetailsOnAction(ActionEvent event) {
-
+    void btnOrderDetailsOnAction(ActionEvent event) throws IOException {
+        URL resource= this.getClass().getResource("view/CustomerForm.fxml");
+        assert resource !=null;
+        Parent load = FXMLLoader.load(resource);
+        this.root.getChildren().clear();
+        this.root.getChildren().add(load);
     }
 
     @FXML
